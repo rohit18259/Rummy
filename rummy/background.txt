@@ -1,0 +1,23 @@
+from PIL import Image
+from math import *
+
+new=Image.new('RGB',(1500,800))
+width,heigh=new.size
+
+t=(0,100,0)
+coeff=255/sqrt(2)
+
+def gradient(x,y,a,b):
+	val=(x**2)/(a**2)+(y**2)/(b**2)
+	val=int(coeff*sqrt(val))
+	return 255-val
+
+for x in range(width):
+	for y in range(heigh):
+		x1,y1=x-750,y-400
+		g=gradient(x1,y1,750,400)
+		t=(0,g,0)
+		new.putpixel((x,y),t)
+
+new.show()
+new.save("C:/Users/lenovo/Desktop/rummy/background.png")
